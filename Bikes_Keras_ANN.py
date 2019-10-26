@@ -11,8 +11,8 @@ import numpy as np
 
 # Step 2: Set our random seed
 
-seed = 9
-np.random.seed(seed)
+# seed = 9
+# np.random.seed(seed)
 
 
 # Step 3: Import our data set
