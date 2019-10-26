@@ -6,6 +6,7 @@
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 from tensorflow.keras import backend
+from sklearn.model_selection import train_test_split
 import numpy as np
 
 # Step 2: Set our random seed
@@ -29,6 +30,7 @@ array = dataframe.values
 
 x = array[:, 0:11]
 y = array[:, 11]
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=.25, random_state = 9)
 
 
 # Step 5: Build the Model
@@ -63,10 +65,10 @@ model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy']
 # epochs is iterations over the dataset;
 # batch size is number of instances iterated over before weights are updated
 
-model.fit(x, y, epochs=500, batch_size=15)
+model.fit(x, y, epochs=250, batch_size=15)
 
 # Step 8: Score the model
 
-scores = model.evaluate(x, y)
+scores = model.evaluate(x_test, y_test)
 print("%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
 
